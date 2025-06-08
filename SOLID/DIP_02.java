@@ -3,10 +3,10 @@ package SOLID;
 public class DIP_02 {
 
     /*
-     * TASK:
-     * The class Employee violates the DIP (Dependency Inversion Principle).
-     * Fix this!
-     */
+    * FIX:
+    * I introduced an interface called `Notification` that defines how notifications should work.
+    * Now, the Employee class depends on this interface instead of the low level module EmailNotification class.
+    */
     
     public static interface Notification {
         void doNotify();
@@ -20,10 +20,10 @@ public class DIP_02 {
     }
 
     public static class Employee {
-        private EmailNotification emailNotification;
+        private Notification emailNotification;  // Changed type to interface Notification
 
-        // Dependency Injection (again) composition
-        public Employee(EmailNotification emailNotification) {
+        // Dependency Injection with interface (abstraction)
+        public Employee(Notification emailNotification) {
             this.emailNotification = emailNotification;
         }
     
@@ -34,7 +34,7 @@ public class DIP_02 {
 
     public static void main(String[] args) {
         EmailNotification emailNotification = new EmailNotification();
-        Employee employee = new Employee(emailNotification);
+        Employee employee = new Employee(emailNotification); // Passing concrete implementation
         employee.notifyEmployee();
     }
 }
