@@ -36,3 +36,4 @@ public class DIP_01 {
         lightSwitch.operate();
     }
 }
+Testing
