@@ -1,40 +1,39 @@
 package SOLID;
 
-public class LSP_02 {
-    
-    /*
-     * TASK:
-     * The polymorphic function move expect the same behaviour
-     * for all birds, but this isn't the case.
-     * Fix this to obey the LSP (Liskov Substitution Principle)!
-     */
+public class LSP_02{
 
-    public static class Bird {
-        public void fly() {
-            System.out.println("The bird is flying...");
-        }
+    // Base Bird class - all birds extend this
+    public static abstract class Bird {
+        // General bird behavior can be here
     }
 
-    public static class Sparrow extends Bird {
+    // Interface for birds that can fly
+    public interface Flyable {
+        void fly();
+    }
+
+    // Sparrow is a flying bird
+    public static class Sparrow extends Bird implements Flyable {
         @Override
         public void fly() {
             System.out.println("The sparrow is flying...");
         }
     }
 
+    // Penguin is a bird but cannot fly, so it does NOT implement Flyable
     public static class Penguin extends Bird {
-        @Override
-        public void fly() {
-            throw new UnsupportedOperationException("Penguins can't fly :(");
-        }
+        // No fly method here
     }
 
-    public static void move(Bird bird) {
+    // Move method for flying birds only
+    public static void move(Flyable bird) {
         bird.fly();
     }
 
     public static void main(String[] args) {
-        move(new Sparrow());
-        move(new Penguin());
+        Sparrow sparrow = new Sparrow();
+        Penguin penguin = new Penguin();
+
+        move(sparrow);  
     }
 }
