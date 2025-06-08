@@ -35,5 +35,4 @@ public class DIP_01 {
         Switch lightSwitch = new Switch(lightBulb);
         lightSwitch.operate();
     }
-}
-Testing
+}.
