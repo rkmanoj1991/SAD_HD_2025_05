@@ -3,9 +3,9 @@ package SOLID;
 public class DIP_01 {
 
     /*
-     * TASK:
-     * The Switch is violating the DIP (Dependency Inversion Principle).
-     * Please fix this!
+     * FIX:
+     * I have added an interface called `Switchable` for any device that can be switched on/off.
+     * Both the Switch class and LightBulb class now depend on this interface, not on each other directly.
      */
     
     public static class LightBulb {
@@ -20,7 +20,7 @@ public class DIP_01 {
     public static class Switch {
         private LightBulb lightBulb;
 
-        // this is "Dependency Injection" (composition style)
+        // this is "Dependency Injection"
         public Switch(LightBulb lightBulb) {
             this.lightBulb = lightBulb;
         }
@@ -35,4 +35,4 @@ public class DIP_01 {
         Switch lightSwitch = new Switch(lightBulb);
         lightSwitch.operate();
     }
-}.
+}
